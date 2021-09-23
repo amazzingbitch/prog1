@@ -29,28 +29,6 @@ Date::Date(int day, int month, int year, int hour, int minute, int second) {
     }
 }
 
-/*Data::Data(char* a) {
-    int size = (int)strlen(a);
-    int flag = 0, p = 0;
-    while (flag != 5) {
-        int* m = new int[5];
-        int j = 0;
-        for (int i = p; i < size; i++) {
-            if (a[i] == '.' || a[i] == ':' || a[i] == ' ') {
-                flag++;
-                p = i + 1;
-                break;
-            } else {
-                m[j] = a[i] - '0';
-                j++;
-            }
-        }
-        for (int i = 0; i < j; i++) {
-
-        }
-    }
-}*/
-
 Date::Date(Date &a) {
     this-> Day = a.Day, this-> Month = a.Month, this-> Year = a.Year;
     this-> Hour = a.Hour, this-> Minute = a.Minute, this-> Second = a.Second;
@@ -360,7 +338,3 @@ void Date::SecondMinus() {
         MinuteMinus();
     }
 }
-
-/*void Date::Print() {
-        cout << Getstr() << endl << "--------------------" << endl;
-}*/
