@@ -2,8 +2,8 @@
 // Created by casde on 21.09.2021.
 //
 
-#ifndef LABOR1_DATA_H
-#define LABOR1_DATA_H
+#ifndef PROG1_DATA_H
+#define PROG1_DATA_H
 
 #include <iostream>
 #include <iomanip>
@@ -44,4 +44,4 @@ private:
     static bool CheckDay(int day, int month, int year);
 };
 
-#endif //LABOR1_DATA_H
+#endif //PROG1_DATA_H
