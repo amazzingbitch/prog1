@@ -4,6 +4,7 @@
 
 #include "Data.h"
 #include "catch.hpp"
+#include <cstring>
 
 TEST_CASE("DateTime class tests", "[Square]") {
     Date a(28, 2, 2020, 23, 5, 14);

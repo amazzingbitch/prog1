@@ -16,7 +16,6 @@ public:
     Date();
     Date(int day, int month, int year, int hour, int minute, int second);
     Date(Date &a);
-    //Data(char* a);
     ~Date();
     void SetDay(int day);
     void SetMonth(int month);
@@ -24,7 +23,6 @@ public:
     void SetH(int hour);
     void SetMinute(int minute);
     void SetSecond(int second);
-    //void Print();
     void Plus(char k);
     void DayPlus();
     void HourPlus();
