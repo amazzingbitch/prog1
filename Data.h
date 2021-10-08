@@ -35,9 +35,9 @@ public:
     void SecondMinus();
     static int countCalc(int num);
     void ToString();
-    char* Getstr();
+    char* GetStr();
 private:
-    int Day, Month, Year, Hour, Minute, Second;
+    int Day, Month, Year, Hour, Minute, Second, sizeStr;
     char* str;
     static bool CheckData(int day, int month, int year);
     static bool CheckTime(int hour, int minute, int second);

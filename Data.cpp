@@ -8,38 +8,33 @@ Date::Date() {
     Day = 1, Month = 1, Year = 2007,
     Hour = 0, Minute = 0, Second = 0;
     this->str = nullptr;
+    sizeStr = 0;
     ToString();
 }
-
 Date::Date(int day, int month, int year, int hour, int minute, int second) {
     if (CheckTime(hour, minute, second) && CheckData(day, month, year)) {
-        SetDay(day);
-        SetMonth(month);
-        SetY(year);
-        SetH(hour);
-        SetMinute(minute);
-        SetSecond(second);
+        this-> Day = day, this-> Month = month, this-> Year = year;
+        this-> Hour = hour, this-> Minute = minute, this-> Second = second;
         this->str = nullptr;
+        sizeStr = 0;
         ToString();
     } else {
         Day = 1, Month = 1, Year = 2007,
         Hour = 0, Minute = 0, Second = 0;
         this->str = nullptr;
+        sizeStr = 0;
         ToString();
     }
 }
-
 Date::Date(Date &a) {
     this-> Day = a.Day, this-> Month = a.Month, this-> Year = a.Year;
     this-> Hour = a.Hour, this-> Minute = a.Minute, this-> Second = a.Second;
-    this->str = nullptr;
+    this->str = nullptr; this->sizeStr = 0;
     ToString();
 }
-
 Date::~Date() {
-    delete[]this->str;
+    delete[] this->str;
 }
-
 void Date::ToString() {
     int size[6], sum = 0;
     int date[6] = { Day, Month, Year, Hour, Minute, Second };
@@ -66,6 +61,7 @@ void Date::ToString() {
             move++;
         }
     }
+    this->sizeStr = sum + 6;
 }
 
 int Date::countCalc(int num) {
@@ -78,34 +74,38 @@ int Date::countCalc(int num) {
     return len;
 }
 
-char* Date::Getstr() { // геттер строки
-    return this->str;
+char* Date::GetStr() { // геттер строки
+    char* cpStr = new char[sizeStr];
+    for (int j = 0; j < sizeStr + 1; j++) {
+        cpStr[j] = str[j];
+    }
+    return cpStr;
 }
 
 void Date::SetDay(int day) {
     this-> Day = day;
+    ToString();
 }
-
 void Date::SetMonth(int month) {
     this-> Month = month;
+    ToString();
 }
-
 void Date::SetY(int year) {
     this-> Year = year;
+    ToString();
 }
-
 void Date::SetH(int hour) {
     this-> Hour = hour;
+    ToString();
 }
-
 void Date::SetMinute(int minute) {
     this-> Minute = minute;
+    ToString();
 }
-
 void Date::SetSecond(int second) {
     this-> Second = second;
+    ToString();
 }
-
 bool Date::CheckData(int day, int month, int year)
 {
     if (year < 0 || day < 1 || month < 1 || month > 12 || !(CheckDay(day, month, year)))
@@ -113,7 +113,6 @@ bool Date::CheckData(int day, int month, int year)
     else
         return true;
 }
-
 bool Date::CheckDay(int day, int month, int year) {
     int a[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     if (month == 2 && year % 4 == 0) {
@@ -124,7 +123,6 @@ bool Date::CheckDay(int day, int month, int year) {
         else return true;
     }
 }
-
 bool Date::CheckTime(int hour, int minute, int second)
 {
     if (hour >= 0  && hour < 24 && minute >= 0 && minute < 60 && second >= 0 && second < 60)
@@ -132,7 +130,6 @@ bool Date::CheckTime(int hour, int minute, int second)
     else
         return false;
 }
-
 void Date::Plus(char k) {
     switch (k) {
         case 'y':
@@ -175,7 +172,6 @@ void Date::Plus(char k) {
     }
     ToString();
 }
-
 void Date::DayPlus() {
     switch (Day) {
         case 28:
@@ -214,7 +210,6 @@ void Date::DayPlus() {
             break;
     }
 }
-
 void Date::HourPlus() {
     if (Day < 28) {
         Day++;
@@ -224,7 +219,6 @@ void Date::HourPlus() {
         Hour = 0;
     }
 }
-
 void Date::MinutePlus() {
     if (Hour < 23) {
         Minute = 0;
@@ -234,7 +228,6 @@ void Date::MinutePlus() {
         HourPlus();
     }
 }
-
 void Date::SecondPlus() {
     if (Minute < 59) {
         Second = 0;
@@ -244,7 +237,6 @@ void Date::SecondPlus() {
         MinutePlus();
     }
 }
-
 void Date::Minus(char k) {
     switch (k) {
         case 'y':
@@ -288,7 +280,6 @@ void Date::Minus(char k) {
     }
     ToString();
 }
-
 void Date::DayMinus() {
     if (Month == 1) {
         Year--;
@@ -308,7 +299,6 @@ void Date::DayMinus() {
         Day = 31;
     }
 }
-
 void Date::HourMinus() {
     if (Day > 1) {
         Hour = 23;
@@ -318,7 +308,6 @@ void Date::HourMinus() {
         DayMinus();
     }
 }
-
 void Date::MinuteMinus() {
     if (Hour > 0) {
         Minute = 59;
@@ -328,7 +317,6 @@ void Date::MinuteMinus() {
         HourMinus();
     }
 }
-
 void Date::SecondMinus() {
     if (Minute > 0) {
         Second = 59;
